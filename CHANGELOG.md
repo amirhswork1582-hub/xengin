@@ -5,6 +5,22 @@ All notable changes to the **Xengin** project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0-beta.1] - 2026-09-29
+
+### Changed
+- **Streamlined 3-Workflow UX**: User-facing slash menu restricted to exactly three core workflows: `/xengin-task`, `/xengin-plan`, and `/xengin-review`.
+- **Modular Rule Architecture**: Demoted heavy domain skills (`xengin-frontend-engineering`, `xengin-backend-engineering`, `xengin-workflow`) to modular, conditional rules (`rules/frontend.md` and `rules/backend.md` with `trigger: model_decision`) and shared includes under `rules/includes/`.
+- **Generalized Domain Rules & Risk Model**:
+  - De-Owlino-ized verification requirements: negative-path tests are now domain-tailored (auth boundaries for security, atomic rollback for transactions, race conditions for concurrency) rather than a rigid uniform checklist.
+  - Clarified public vs protected endpoint security requirements.
+  - Codified comprehensive state taxonomy (navigable/URL, private/storage, transient/local, derived/inline).
+  - Conditional Expand-Migrate-Contract database migrations.
+  - Durable delivery requirements for business-critical side effects.
+- **Isolated Gemini CLI Layer**: Relocated legacy `commands/` and `gemini-extension.json` to `compat/gemini-cli/` to keep the native Antigravity plugin root clean.
+- **Plugin Manifest Upgrade**: Upgraded `plugin.json` to version `0.3.0-beta.1` with official schema `$schema: https://antigravity.google/schemas/v1/plugin.json`.
+- **Open Source Sanitization**: Stripped all local machine paths (`C:\Users\...`, `G:\...`) across repository files and added full Apache-2.0 `LICENSE`, `CONTRIBUTING.md`, `SECURITY.md`, `.gitignore`, and GitHub issue templates.
+- **Examples & Benchmarks**: Added real-world implementation examples and anonymized benchmarking methodology and empirical results.
+
 ## [0.2.0] - 2026-09-28
 
 ### Added

@@ -49,12 +49,10 @@ For every software engineering task, execute the following disciplined lifecycle
    - If `graphify-out/` exists and the task has medium/high blast radius or cross-module dependencies, inspect `GRAPH_REPORT.md` to localize communities and boundary nodes.
    - For small/local tasks, Graphify may be skipped.
    - *Source code remains the final authority.*
-5. **Skill Activation**:
-   - Frontend tasks $\rightarrow$ activate `xengin-frontend-engineering`.
-   - Backend tasks $\rightarrow$ activate `xengin-backend-engineering`.
-   - Complex workflows / Gates $\rightarrow$ activate `xengin-workflow`.
-   - Code reviews / audits $\rightarrow$ activate `xengin-review`.
-   - *(Note: If skill activation fails, Xengin Core invariants still apply unconditionally).*
+5. **Skill & Rule Activation**:
+   - Workflows $\rightarrow$ invoke `/xengin:task`, `/xengin:plan`, or `/xengin:review`.
+   - Domain expertise $\rightarrow$ apply frontend and backend invariants from core rules.
+   - *(Note: Xengin Core invariants apply unconditionally across all turns).*
 6. **Proportional Implementation**: Implement the smallest safe, coherent change. Do not introduce speculative abstractions, unused microservices, or artificial queue infrastructures.
 7. **Final Enforcement Gate**: Before declaring completion, perform a rigorous self-audit against `references/final-enforcement-gate.md` (Security, Boundary Validation, Data Safety, Concurrency, State Persistence, Code Hygiene).
 8. **Risk-Based Verification**:

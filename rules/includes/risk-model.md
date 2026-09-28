@@ -22,9 +22,9 @@ flowchart TD
 
 ### 1. Low Risk
 
-#### Examples:
+#### Scope & Examples:
 - Copy/text changes and typographical adjustments.
-- Pure CSS/styling updates that do not alter layout flow.
+- Pure CSS/styling updates that do not alter layout flow or responsive behavior.
 - Isolated presentational UI modifications with no business logic or state mutations.
 - Adding non-sensitive documentation or comments.
 
@@ -37,22 +37,22 @@ flowchart TD
 
 ### 2. Medium Risk
 
-#### Examples:
+#### Scope & Examples:
 - Form submissions and client-side form validations.
-- Standard CRUD API endpoints that do not involve financial calculations or inventory.
+- Standard CRUD API endpoints that do not involve financial calculations, inventory, or security boundaries.
 - Shared component modifications with multiple existing consumers.
 - URL-driven filtering and client-side sorting.
 
 #### Required Verification:
 - Full build and typecheck.
-- Targeted unit or integration tests covering normal and validation error states.
+- Targeted unit or integration tests covering normal execution and validation error states.
 - Verification that existing consumers of modified shared components remain unbroken.
 
 ---
 
 ### 3. High Risk
 
-#### Examples:
+#### Scope & Examples:
 - Authentication, authorization, token issuance, or permission scoping.
 - Financial transactions, billing, payments, or ledger operations.
 - Inventory deductions, bill of materials (BOM), or warehouse cardex updates.
@@ -63,8 +63,20 @@ flowchart TD
 
 #### Required Verification (MANDATORY & AUTOMATIC):
 - **User request not required**: Xengin MUST automatically implement and execute automated behavioral tests for these tasks.
-- **Negative-Path Invariants**:
-  1. *Unauthenticated Boundary*: Unauthenticated requests return 401.
-  2. *Unauthorized / Ownership Boundary*: Cross-tenant or cross-user requests return 403 / 404 (IDOR immunity).
-  3. *Atomic Rollback Invariant*: In multi-step writes, if any constraint fails (e.g. insufficient inventory, payment gateway rejection), verify that zero partial writes and zero orphan records persist in the database.
-  4. *Side Effect Isolation*: External network failure (e.g. SMS gateway down) must not cause the completed database transaction to abort.
+- **Domain-Tailored Negative-Path Invariants**:
+  Rather than applying a rigid, one-size-fits-all checklist to every task, negative-path tests MUST be tailored to the specific risk domain:
+
+  1. **Authentication & Authorization Domain**:
+     - *Unauthenticated Boundary*: Unauthenticated requests return 401. (Skip if the endpoint is explicitly public, such as user registration, login, or public catalog).
+     - *Unauthorized / Ownership Boundary*: Cross-tenant or cross-user requests return 403 / 404 (IDOR immunity).
+  2. **Transactional & State Mutation Domain**:
+     - *Atomic Rollback Invariant*: In multi-step writes, if any validation or constraint fails, verify that zero partial writes and zero orphan records persist in the database.
+     - *Idempotency*: Re-submitting an identical idempotent request does not produce duplicate state or duplicate charges.
+  3. **Concurrency & Resource Allocation Domain (Inventory, Balances)**:
+     - *Insufficient Balance / Stock*: Reject operations when available quantity/balance is insufficient, without corrupting ledgers.
+     - *Race Condition Protection*: Verify that simultaneous requests cannot cause overselling or double-spending.
+  4. **Destructive Operations & Migrations Domain**:
+     - *Cascade Safety*: Verify foreign key constraints and prevent unintended deletion of related parent/child records.
+     - *Zero-Downtime Migration*: Verify backward-compatibility across expand-migrate-contract phases.
+  5. **Side Effect Isolation**:
+     - External network failures (e.g. SMS/email gateway unreachable) must not abort committed database transactions, and critical delivery must be recoverable.

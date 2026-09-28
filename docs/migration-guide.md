@@ -7,10 +7,10 @@ This guide describes how to migrate from legacy loose rulebook directories and g
 ## 1. Zero-Risk Migration Principle
 
 > [!CAUTION]
-> **DO NOT DELETE LEGACY SKILLS YET.**  
-> Keep `frontend-agent-rules`, `backend-agent-rules`, and `graphify` in your global skills folder (`C:\Users\amir\.gemini\config\skills\`) until Xengin has been verified across multiple real-world coding sessions.
+> **DO NOT DELETE LEGACY SKILLS PREMATURELY.**  
+> Keep `frontend-agent-rules`, `backend-agent-rules`, and `graphify` in your global skills directory (`~/.gemini/config/skills/`) until Xengin v0.3.0-beta.1 has been verified across multiple real-world coding sessions.
 
-Xengin skills are uniquely namespaced (`xengin-*`) to avoid naming collisions with legacy skills. Both systems can safely coexist during the transition period.
+Xengin skills are uniquely namespaced (`xengin-*`) and workflows are consolidated to avoid naming collisions with legacy skills. Both systems can safely coexist during the transition period.
 
 ---
 
@@ -19,11 +19,9 @@ Xengin skills are uniquely namespaced (`xengin-*`) to avoid naming collisions wi
 ```mermaid
 flowchart LR
     Legacy["Legacy Loose Skills<br/>(~/.gemini/config/skills/)"] 
-      --> GemExt["Xengin Gemini CLI Extension<br/>(G:/AntiGravity/xengin)"]
+      --> GemExt["Xengin Prototype"]
     GemExt 
-      --> AgImport["agy plugin import<br/>(Automated Conversion)"]
-    AgImport 
-      --> NatPlugin["Native Antigravity Plugin<br/>(G:/AntiGravity/xengin-antigravity)"]
+      --> NatPlugin["Native Antigravity Plugin<br/>(v0.3.0-beta.1)"]
     NatPlugin 
       --> Verification["Validation & Smoke Tests"]
     Verification 
@@ -35,39 +33,39 @@ flowchart LR
 ## 3. Step-by-Step Native Installation
 
 ### Step 1: Import Plugin into Antigravity
-Run the official Antigravity CLI import command:
+Run the official Antigravity CLI import command pointing to your cloned repository:
 
-```powershell
-agy plugin import G:\AntiGravity\xengin-antigravity
+```bash
+agy plugin import <path-to-xengin>
 ```
 
 Expected output:
 ```text
   [ok]    xengin
-          ✔ skills      : 6 processed
+          ✔ skills      : 3 processed
           - agents      : skipped (not found)
           - commands    : skipped (not found)
           - mcpServers  : skipped (not found)
           - hooks       : skipped (not found)
 
-Staged to C:\Users\amir\.gemini\config
+Staged to ~/.gemini/config
 ```
 
 ### Step 2: Validate the Staged Plugin
 Verify the staged plugin structure:
 
-```powershell
-agy plugin validate C:\Users\amir\.gemini\config\plugins\xengin
+```bash
+agy plugin validate ~/.gemini/config/plugins/xengin
 ```
 
 Expected output:
 ```text
-  [ok]    C:\Users\amir\.gemini\config\plugins\xengin
-          ✔ skills      : 6 processed
+  [ok]    ~/.gemini/config/plugins/xengin
+          ✔ skills      : 3 processed
 ```
 
 ### Step 3: Verify Plugin is Active
-```powershell
+```bash
 agy plugin list
 ```
 
@@ -78,10 +76,10 @@ agy plugin list
 Once you have verified that Xengin successfully drives your development across multiple projects:
 
 1. **Create a Full Backup**:
-   ```powershell
-   Copy-Item -Path "C:\Users\amir\.gemini\config\skills" -Destination "C:\Users\amir\.gemini\config\skills_backup" -Recurse
+   ```bash
+   cp -r ~/.gemini/config/skills ~/.gemini/config/skills_backup
    ```
 2. **Archive Legacy Skills**:
-   Remove or move `frontend-agent-rules` and `backend-agent-rules` from `C:\Users\amir\.gemini\config\skills\`.
+   Remove or move `frontend-agent-rules` and `backend-agent-rules` from `~/.gemini/config/skills/`.
 3. **Keep Graphify**:
-   Keep `graphify` in your skills folder; Xengin will detect and use it when relevant.
+   Keep `graphify` in your skills directory; Xengin will detect and use it when relevant.

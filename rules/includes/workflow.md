@@ -24,7 +24,7 @@ Classify
 - Assess risk:
   - **Low**: Presentational UI, text, non-breaking styling $\rightarrow$ Build / lint / typecheck.
   - **Medium**: Forms, standard CRUD, shared components $\rightarrow$ Targeted tests + build.
-  - **High**: Auth, finance, inventory/BOM, concurrency, migrations, data deletion $\rightarrow$ **Mandatory behavioral negative-path feature tests** (unauthenticated 401, unauthorized 403/IDOR blocking, atomic rollback on constraint failure).
+  - **High**: Auth, finance, inventory/BOM, concurrency, migrations, data deletion $\rightarrow$ **Mandatory domain-tailored behavioral negative-path feature tests** (e.g., 401/403 for protected auth, atomic rollback on constraint failure, race condition checks).
 
 ### 2. Pre-flight & Conditional Graphify
 - Inspect directory layout, package managers, and scripts.

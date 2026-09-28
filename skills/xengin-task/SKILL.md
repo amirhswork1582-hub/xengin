@@ -12,12 +12,12 @@ The user has requested the implementation of a software requirement.
 Execute this task using the Xengin 10-step software engineering pipeline:
 
 1. **Classify Scope**: Determine whether this is `frontend`, `backend`, `cross-layer`, or `refactor`.
-2. **Assess Risk**: Classify risk level (`Low`, `Medium`, `High`) according to `xengin-workflow`.
+2. **Assess Risk**: Classify risk level (`Low`, `Medium`, `High`) according to the Xengin Risk Model (`rules/includes/risk-model.md`).
 3. **Pre-flight Discovery**:
    - Inspect existing project structure, framework, conventions, and scripts (`Inspect Never Invent`).
    - If `graphify-out/` exists and the task has medium/high blast radius, review `GRAPH_REPORT.md` before deep manual exploration. Verify against source code.
-4. **Activate Expertise**: Activate `xengin-frontend-engineering`, `xengin-backend-engineering`, or `xengin-workflow` as needed.
+4. **Activate Expertise**: Apply domain rules (`rules/frontend.md` for UI/frontend, `rules/backend.md` for APIs/database/backend).
 5. **Implement Proportionally**: Implement the minimal safe, coherent solution without parallel architectures or unnecessary infrastructure.
-6. **Final Enforcement Gate**: Perform the mandatory self-audit (Security, Boundaries, Concurrency, State Persistence, Hygiene).
-7. **Risk-Based Verification**: Execute builds and linters. For high-risk tasks, **automatically write and run automated behavioral negative-path tests** (401 unauthenticated, 403 unauthorized/IDOR, atomic rollback on failure).
+6. **Final Enforcement Gate**: Perform the mandatory self-audit (Security, Boundaries, Concurrency, State Persistence, Hygiene) using `rules/includes/final-enforcement-gate.md`.
+7. **Risk-Based Verification**: Execute builds and linters. For high-risk tasks, **automatically write and run automated behavioral negative-path tests** tailored to the risk domain (e.g., 401 unauth, 403 unauthorized/IDOR, atomic rollback on constraint failure, race conditions).
 8. **Diff Review & Delivery**: Review git diff and deliver an evidence-backed completion report (`Changed`, `Validated`, `Gate`, `Notes/Risks`).
