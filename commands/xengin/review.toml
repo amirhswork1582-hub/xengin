@@ -1,0 +1,20 @@
+description = "Audit changes, git diff, or codebase against Xengin engineering standards, security gates, and data integrity principles."
+
+prompt = """
+The user has requested an engineering review:
+
+{{args}}
+
+Perform a comprehensive Xengin architectural and security audit using the xengin-review skill:
+1. Inspect the git diff (if in a Git repository) or the target files specified.
+2. Evaluate against the 5 review dimensions:
+   - Security & Input Boundaries (Auth, Authorization, IDOR, Mass Assignment, Data Sanitization)
+   - Data Integrity & Concurrency (Transactions, Deadlock Mitigations, Side Effects Outside Transactions)
+   - Architectural Coherence (Inspect Never Invent, No Parallel Architectures, State Ownership)
+   - Code Hygiene & Type Safety (No raw any, no suppressions, no leftover debug code)
+   - Test & Verification Coverage (Are high-risk changes covered by negative-path tests?)
+3. Report all findings ordered by severity: [CRITICAL], [HIGH], [MEDIUM], [LOW / ADVISORY].
+4. Provide concrete, minimal remediation recommendations for each finding.
+
+IMPORTANT: Do NOT modify any code files automatically during this review unless the user explicitly requests automatic remediation.
+"""

@@ -1,0 +1,16 @@
+description = "Implement a software development task through the disciplined Xengin engineering workflow."
+
+prompt = """
+The user has provided the following product requirement:
+
+{{args}}
+
+Execute this task using the Xengin 10-step software engineering pipeline:
+1. Classify the task (frontend, backend, cross-layer, refactor) and assess its risk level (Low, Medium, High).
+2. Perform Pre-flight discovery on the codebase (Inspect Never Invent; check Graphify if medium/high blast radius and available).
+3. Activate the appropriate engineering skill (xengin-frontend-engineering, xengin-backend-engineering, or xengin-workflow).
+4. Implement the minimal safe, coherent solution without parallel architectures or unnecessary infrastructure.
+5. Perform the mandatory Final Enforcement Gate self-audit before completion.
+6. Execute risk-proportional validation (automated negative-path behavioral tests for high-risk domains).
+7. Review final diff and deliver an evidence-backed completion report (Changed, Validated, Gate, Notes/Risks).
+"""

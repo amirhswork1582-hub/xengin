@@ -1,0 +1,6 @@
+{
+  "name": "xengin",
+  "version": "0.1.0",
+  "description": "X Engineering Intelligence - Disciplined software engineering workflows for Gemini CLI",
+  "contextFileName": "GEMINI.md"
+}
