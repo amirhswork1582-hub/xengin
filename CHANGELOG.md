@@ -5,13 +5,26 @@ All notable changes to the **Xengin** project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0-beta.2] - 2026-09-29
+
+### Added
+- **Public Beta Empirical Validation Dossier**: Comprehensive empirical benchmarks in `docs/benchmarks/public-beta-validation.md` documenting 100% pass rate across 8 real-world testing dimensions.
+- **Pull Request Template**: Standard contributor PR checklist guarding Xengin engineering invariants (`.github/PULL_REQUEST_TEMPLATE.md`).
+
+### Changed
+- **Positioning & Documentation Overhaul**: Completely updated `README.md` to align with product-first positioning, explicit workflow descriptions, and clear architectural differentiation.
+- **Repository Metadata Alignment**: Configured official GitHub repository links and public beta metadata in `plugin.json`.
+
+### Fixed
+- **Read-Only Invariant for /xengin-plan**: Explicitly specified `RequestFeedback: false` in planning artifacts to guarantee clean read-only termination without triggering auto-execution hooks.
+
 ## [0.3.0-beta.1] - 2026-09-29
 
 ### Changed
 - **Streamlined 3-Workflow UX**: User-facing slash menu restricted to exactly three core workflows: `/xengin-task`, `/xengin-plan`, and `/xengin-review`.
 - **Modular Rule Architecture**: Demoted heavy domain skills (`xengin-frontend-engineering`, `xengin-backend-engineering`, `xengin-workflow`) to modular, conditional rules (`rules/frontend.md` and `rules/backend.md` with `trigger: model_decision`) and shared includes under `rules/includes/`.
 - **Generalized Domain Rules & Risk Model**:
-  - De-Owlino-ized verification requirements: negative-path tests are now domain-tailored (auth boundaries for security, atomic rollback for transactions, race conditions for concurrency) rather than a rigid uniform checklist.
+  - Domain-tailored verification requirements: negative-path tests are now tailored to actual architectural risk (auth boundaries for security, atomic rollback for transactions, race conditions for concurrency) rather than a rigid uniform checklist.
   - Clarified public vs protected endpoint security requirements.
   - Codified comprehensive state taxonomy (navigable/URL, private/storage, transient/local, derived/inline).
   - Conditional Expand-Migrate-Contract database migrations.
