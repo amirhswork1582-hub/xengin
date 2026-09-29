@@ -18,4 +18,4 @@ Formulate a disciplined Xengin implementation plan without making any modificati
 5. **Verification Strategy**: Specify the required build, lint, and behavioral test suites needed to prove success and negative-path invariants.
 
 > [!IMPORTANT]
-> **Do NOT modify any source files during this command.** Provide only the architectural analysis, risks, and phased execution plan.
+> **Do NOT modify any source files during this command.** Provide only the architectural analysis, risks, and phased execution plan. When saving planning documents or artifacts, strictly set `RequestFeedback: false` so the command terminates cleanly as a read-only plan without triggering automatic execution hooks.

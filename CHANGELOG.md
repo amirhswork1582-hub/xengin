@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Isolated Gemini CLI Layer**: Relocated legacy `commands/` and `gemini-extension.json` to `compat/gemini-cli/` to keep the native Antigravity plugin root clean.
 - **Plugin Manifest Upgrade**: Upgraded `plugin.json` to version `0.3.0-beta.1` with official schema `$schema: https://antigravity.google/schemas/v1/plugin.json`.
 - **Open Source Sanitization**: Stripped all local machine paths (`C:\Users\...`, `G:\...`) across repository files and added full Apache-2.0 `LICENSE`, `CONTRIBUTING.md`, `SECURITY.md`, `.gitignore`, and GitHub issue templates.
+- **Read-Only Invariant for /xengin-plan**: Explicitly specified `RequestFeedback: false` in planning artifacts to guarantee clean read-only termination without triggering auto-execution hooks.
 - **Examples & Benchmarks**: Added real-world implementation examples and anonymized benchmarking methodology and empirical results.
 
 ## [0.2.0] - 2026-09-28
