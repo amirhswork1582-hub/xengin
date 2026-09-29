@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "xengin",
+  "version": "0.3.0-beta.2",
+  "description": "Engineering guardrails for AI coding agents — safer vibe coding with architecture-aware workflows, risk-based validation, and code review.",
+  "author": {
+    "name": "Xengin Contributors",
+    "url": "https://github.com/amirhswork1582-hub/xengin"
+  },
+  "skills": [
+    "./skills"
+  ]
+}

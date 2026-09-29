@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.0-beta.2] - 2026-09-29
 
 ### Added
+- **Native Claude Code Adapter**: Full native adapter under `platforms/claude-code/` with progressive disclosure skills (`xengin-task`, `xengin-plan`, `xengin-review`), root marketplace manifest (`.claude-plugin/marketplace.json`), and deterministic synchronization script (`scripts/sync-claude-adapter.ps1`).
 - **Public Beta Empirical Validation Dossier**: Comprehensive empirical benchmarks in `docs/benchmarks/public-beta-validation.md` documenting 100% pass rate across 8 real-world testing dimensions.
 - **Pull Request Template**: Standard contributor PR checklist guarding Xengin engineering invariants (`.github/PULL_REQUEST_TEMPLATE.md`).
 

@@ -211,9 +211,9 @@ Graphify is optional. If it is unavailable, Xengin falls back to normal source-c
 | Environment | Status | Notes |
 | :--- | :--- | :--- |
 | **Antigravity** | ✅ Native / validated | First-class native plugin (`plugin.json`, `rules/`, `skills/`) |
+| **Claude Code** | ✅ Native adapter | Official plugin & marketplace integration (`platforms/claude-code/`) |
 | **Gemini CLI** | 🧪 Experimental compatibility layer | Supported via `compat/gemini-cli/` manifest |
 | **Codex** | 🗺️ Planned adapter | Core rules portable; adapter planned for future releases |
-| **Claude Code** | 🗺️ Planned adapter | Core rules portable; adapter planned for future releases |
 
 ---
 

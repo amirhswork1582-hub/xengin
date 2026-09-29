@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "xengin",
+  "version": "0.3.0-beta.2",
+  "description": "X Engineering Intelligence — Engineering guardrails for Claude Code",
+  "owner": {
+    "name": "amirhswork1582-hub",
+    "email": "amirhswork1582@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "xengin",
+      "source": "./platforms/claude-code"
+    }
+  ]
+}

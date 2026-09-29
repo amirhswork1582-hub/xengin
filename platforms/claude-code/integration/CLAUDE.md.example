@@ -1,0 +1,19 @@
+# Project Instructions with Xengin Guardrails
+
+This project utilizes **Xengin (X Engineering Intelligence)** guardrails for software engineering tasks.
+
+## Engineering Invariants
+- **Inspect Before Invent**: Discover existing models, services, UI components, and API routes before introducing new ones.
+- **Source Code is Ground Truth**: Always verify schemas and signatures against source code, migrations, and runtime tests.
+- **Zero Parallel Architectures**: Never create duplicate models, parallel state managers, or conflicting utilities when conventions exist.
+- **Risk-Proportional Verification**: Run builds, linter checks, and automated behavioral tests proportionally to risk.
+- **Final Enforcement Gate**: Audit boundaries (IDOR defense, mass assignment prevention, response sanitization) prior to declaring tasks complete.
+
+## Workflows
+- `/xengin-task` — Implement features, fixes, or refactors with full lifecycle discovery, gate audit, and test verification.
+- `/xengin-plan` — Formulate phased, read-only architectural implementation plans for high-blast-radius changes.
+- `/xengin-review` — Conduct read-only 5-dimension code reviews on active Git diffs.
+- **Natural Prompts**: Conversational requests automatically follow Xengin engineering standards without requiring slash commands.
+
+> [!TIP]
+> You can safely merge the above snippet into your existing `CLAUDE.md`. Xengin does not require replacing your project-specific instructions.
