@@ -3,56 +3,155 @@
 Engineering guardrails for Antigravity coding agents.
 
 Describe what you want.  
-Xengin decides how to engineer it safely.
+Xengin handles how to engineer it safely.
+
+[![GitHub Release](https://img.shields.io/github/v/release/amirhswork1582-hub/xengin?include_prereleases&color=blue&label=release)](https://github.com/amirhswork1582-hub/xengin/releases)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
+[![Antigravity](https://img.shields.io/badge/Antigravity-Native%20Plugin-purple)](https://antigravity.google)
+[![Status](https://img.shields.io/badge/status-Public%20Beta-orange)](#)
 
 ---
 
-Xengin is an Antigravity-native engineering harness designed for developers and vibe coders who want the coding agent to own routine engineering decisions while keeping architecture, security, data integrity, and validation disciplined.
+Xengin is an Antigravity-native engineering harness for developers and vibe coders who want coding agents to make routine technical decisions without turning the codebase into a mess.
+
+It inspects the existing project, activates relevant frontend or backend engineering rules, applies a final enforcement gate, and validates changes proportionally to risk.
 
 ---
 
 ## Why Xengin?
 
-AI coding agents are fast, but left on their own they often:
+AI coding agents are fast, but speed alone does not guarantee good engineering.
 
-- **Invent parallel architectures**: Create duplicate utility folders, duplicate state managers, or conflicting API layers instead of reusing established project patterns.
-- **Skip authorization and validation**: Implement endpoints that lack ownership checks (IDOR vulnerabilities) or accept unvalidated request payloads (mass assignment).
-- **Over-engineer simple tasks**: Introduce heavy abstractions, unnecessary repositories, or generic engines for a three-field form.
-- **Add unneeded infrastructure**: Reach for Redis, message queues, or microservice patterns for simple low-volume operations.
-- **Introduce state synchronization issues**: Chain reactive effects (`useEffect`) to synchronize state rather than deriving values inline or persisting navigable state in URLs.
-- **Claim completion without verification**: Announce success without actually running builds, typechecks, or negative-path behavioral tests.
+Without guardrails, agents may:
+- **Invent parallel architecture**: Create duplicate utilities, redundant state managers, or conflicting API abstractions instead of reusing existing patterns.
+- **Skip validation or authorization**: Leave endpoints vulnerable to IDOR or accept unvalidated request payloads directly into database models (mass assignment).
+- **Over-engineer simple tasks**: Introduce heavy layers, generic form engines, or complex abstractions for basic requirements.
+- **Misuse state and effects**: Chain reactive `useEffect` triggers to synchronize state instead of deriving values inline or persisting navigable state in URLs.
+- **Introduce unnecessary infrastructure**: Reach for Redis, message queues, or microservice patterns for simple, low-volume operations.
+- **Declare work complete without meaningful verification**: Claim tasks are finished without running compilers, linters, or risk-appropriate negative-path behavioral tests.
 
-Xengin introduces a structured engineering process around these risks without requiring you to micromanage technical implementation.
+Xengin adds an engineering process around the agent without forcing you to micromanage implementation details.
+
+```text
+You describe product intent.
+Xengin owns routine engineering decisions.
+```
+
+---
+
+## Practical Example: Before & After
+
+### Without Xengin (Prompt Micromanagement)
+```text
+Create the API, add authorization, prevent IDOR, use a transaction,
+validate fields, keep side effects outside the transaction,
+write rollback tests...
+```
+
+### With Xengin (Product Intent)
+```text
+Users should be able to cancel their own unpaid orders.
+Orders that have already shipped cannot be canceled.
+Notify the admin after a successful cancellation.
+```
+
+Xengin is responsible for discovering the appropriate engineering implementation from the existing project.
+
+---
+
+## 60-Second Quick Start
+
+### 1. Install Plugin
+
+```bash
+# Clone the repository
+git clone https://github.com/amirhswork1582-hub/xengin.git
+cd xengin
+
+# Option A: Import into your active Antigravity plugins directory
+agy plugin import .
+
+# Option B: Clone directly into global plugins directory
+git clone https://github.com/amirhswork1582-hub/xengin.git ~/.gemini/config/plugins/xengin
+```
+
+### 2. Verify Installation
+
+```bash
+# Validate plugin structure
+agy plugin validate ~/.gemini/config/plugins/xengin
+
+# List active plugins
+agy plugin list
+```
+
+### 3. Start Coding
+
+Just talk normally in Antigravity:
+> *"I want users to be able to cancel unpaid orders. Once an order ships, it should no longer be cancelable."*
+
+Or invoke dedicated workflows:
+- `/xengin-task` — Implement a feature with automated discovery, gate audit, and test execution.
+- `/xengin-plan` — Analyze and plan high-risk architectural changes without modifying code.
+- `/xengin-review` — Audit a git diff or existing code for security and architecture flaws.
+
+---
+
+## Not Another 100-Skill Pack
+
+Xengin is intentionally not trying to provide hundreds of commands or specialized personas.
+
+Its user experience is deliberately small:
+- `/xengin-task`
+- `/xengin-plan`
+- `/xengin-review`
+
+Everything else happens behind those workflows or through conditional rules.
+
+```text
+Three workflows.
+Conditional engineering rules.
+Risk-aware verification.
+```
 
 ---
 
 ## How It Works
 
-Xengin operates as a transparent lifecycle behind the scenes:
+Xengin operates as a disciplined lifecycle behind every task:
 
 ```text
-Natural product requirement
-        ↓
-Inspect existing architecture
-        ↓
-Load relevant frontend/backend rules
-        ↓
-Use Graphify when it adds real value
-        ↓
-Implement the smallest safe change
-        ↓
+Your requirement
+      ↓
+Inspect existing codebase
+      ↓
+Frontend / Backend rules
+      ↓
+Smallest safe implementation
+      ↓
 Final Enforcement Gate
-        ↓
-Risk-proportional verification
-        ↓
+      ↓
+Risk-based validation
+      ↓
 Evidence-based delivery
 ```
 
-1. **Inspect Before Invent**: Discovers existing models, middleware, and components before writing new code.
-2. **Conditional Activation**: Injects relevant domain rules (frontend vs. backend) based on the task scope.
-3. **Proportional Implementation**: Writes the smallest safe diff that meets product requirements.
-4. **Final Enforcement Gate**: Executes a mandatory pre-completion audit across security, state taxonomy, and data safety.
-5. **Executable Verification**: Validates changes using actual build tools, compilers, and risk-proportional behavioral tests.
+### Optional Graphify Localization
+
+When analyzing complex codebases with established knowledge graphs:
+
+```text
+Complex repository?
+      ↓
+Graphify available?
+      ↓ yes
+Use graph for localization
+      ↓
+Verify against source
+```
+
+> [!NOTE]
+> **Source code is always the final authority.** All structural relationships discovered via knowledge graphs are verified against actual source files and database migrations.
 
 ---
 
@@ -61,134 +160,85 @@ Evidence-based delivery
 Xengin exposes three focused user-facing workflows:
 
 ### `/xengin-task`
-Implement a feature or fix a bug with full pre-flight discovery, implementation, gate audit, and executable validation.
+Use when you explicitly want Xengin to implement a change. It conducts pre-flight discovery, reuses existing models and UI components, enforces the Final Enforcement Gate, and validates changes with executable tests.
 ```text
 /xengin-task Add a wishlist to the product page. Users should be able to remove items later and see a clear message if saving fails.
 ```
 
 ### `/xengin-plan`
-Inspect the repository and formulate a phased, risk-mitigated implementation plan for high-blast-radius changes without modifying source code.
+Use for large or risky changes when you want analysis and a plan without modifying source code. Evaluates blast radius, dependency impact, and phased migration roadmaps (Expand-Migrate-Contract).
 ```text
 /xengin-plan We want to redesign authentication from session cookies to bearer tokens without breaking active users.
 ```
 
 ### `/xengin-review`
-Audit existing changes or an active Git diff against security, data integrity, component architecture, and test coverage standards without modifying source code.
+Use to inspect a Git diff or existing changes without modifying source code. Audits against security boundaries, transactional atomicity, state taxonomy, and code hygiene, categorizing issues by severity.
 ```text
 /xengin-review Review the current changes on this branch before I merge them.
 ```
 
 ### Natural Prompts (No Slash Command Required)
-Xengin's core invariants are permanently active in Antigravity. Normal conversational prompts automatically trigger the appropriate domain rules and verification standards:
-
-```text
-Users should be able to cancel unpaid orders, but not after shipping.
-Notify the admin after cancellation.
-```
-
-You do not need to manually specify database transactions, IDOR protection, state libraries, or rollback strategies. Xengin handles how to engineer it safely.
+You do not need a slash command for normal work. Natural-language prompts are supported. Xengin's core invariants are permanently active in Antigravity, automatically loading relevant frontend or backend rules as needed.
 
 ---
 
-## What Makes Xengin Different
+## Tested, Not Just Prompted
 
-Xengin is not merely:
-- A prompt pack or prompt template collection
-- A massive static system prompt that clutters context
-- A rigid, uniform checklist that demands HTTP tests for batch scripts
+Xengin has been evaluated using:
+- **Isolated legacy-free tests**: Ensuring zero dependence on deprecated global skills.
+- **Executable task tests**: Verifying pattern discovery and code reuse in real repositories.
+- **Read-only plan tests**: Confirming that planning workflows produce actionable roadmaps without mutating code.
+- **Read-only review tests**: Ensuring security flaws (IDOR, mass assignment, secret leaks) are detected and blocked with zero code modifications.
+- **Natural frontend prompts**: Verifying URL state persistence and derived state without slash commands.
+- **Natural backend prompts**: Verifying IDOR defenses, transactional boundaries, and side-effect isolation from plain conversational prompts.
+- **Risk-specific validation scenarios**: Testing domain-tailored verification (e.g. batching and lock mitigation in background jobs) without checklist blindness.
+- **Graphify ON/OFF tests**: Proving seamless localization when knowledge graphs exist, and graceful fallback when absent.
 
-Instead, Xengin combines:
-- **Always-on engineering invariants**: Source code as ground truth, zero parallel architectures, honest execution.
-- **Modular, conditional domain rules**: Separate frontend and backend rulebooks loaded only when relevant.
-- **Risk-based validation model**: Dynamically scales verification depth from build/lint checks up to domain-tailored negative-path behavioral tests.
-- **Universal Final Enforcement Gate**: A disciplined self-audit catching regressions, leaked credentials, and input boundaries before completion.
-- **Explicit task, plan, and review workflows**: Purpose-built tools for implementation, planning, and read-only auditing.
-
----
-
-## Graphify: Optional Repository Intelligence
-
-Xengin integrates seamlessly with [Graphify](https://github.com/xengin/graphify) as an optional cognitive accelerator:
-
-- **When Graphify is available (`graphify-out/`)** on medium- or high-blast-radius tasks, Xengin inspects community clusters and boundary nodes to understand dependency relationships before modifying code.
-- **When Graphify is unavailable**, Xengin proceeds normally through direct source-code inspection without errors or interruption.
-
-> [!NOTE]
-> Source code remains the final authority. All structural relationships discovered via knowledge graphs are verified against actual source files and database migrations.
+The project includes its [validation methodology and empirical test results](docs/benchmarks/public-beta-validation.md) so users can inspect how its behavior was evaluated.
 
 ---
 
-## Benchmarks & Verification
+## Optional: Graphify
 
-Xengin is continuously evaluated through rigorous empirical benchmarking:
+For larger or dependency-heavy repositories, Xengin can use [Graphify](https://github.com/xengin/graphify) output to localize relevant architecture before deeper source inspection.
 
-- **Blind scenario prompts**: Testing architectural inference against common coding traps (spaghetti UI, over-engineering, state synchronization, IDOR, and unsafe migrations).
-- **Rulebook vs. Enforcement Gate iterations**: Measuring defect capture rates with and without the Final Enforcement Gate self-audit.
-- **Controlled Graphify A/B/C testing**: Measuring discovery speed, token efficiency, and pattern reuse across complex codebases.
-- **Real-codebase behavioral suites**: Automated feature testing across production Laravel, React, and TypeScript stacks.
-- **Isolated Public Beta qualification**: 100% pass rate across 8 empirical validation dimensions in an isolated runtime environment.
-
-See the [benchmark methodology and summarized validation results](docs/benchmarks/public-beta-validation.md) for reproducible evidence.
+Graphify is optional. If it is unavailable, Xengin falls back to normal source-code discovery. Graph data is never treated as more authoritative than the source code.
 
 ---
 
 ## Compatibility
 
-Xengin v0.3 is built and validated as a **native Antigravity plugin**.
-
-Its rulebooks and workflow architecture are intentionally portable, and adapters for additional coding-agent environments may be added in future releases.
-
-An experimental Gemini CLI compatibility layer is included separately under `compat/gemini-cli/`.
-
----
-
-## Installation & Setup
-
-### Antigravity Native Installation (Recommended)
-
-To install Xengin into your Antigravity environment:
-
-```bash
-# Option A: Import from a local directory into your active plugins
-agy plugin import /path/to/xengin
-
-# Option B: Clone directly into your Antigravity plugins directory
-git clone https://github.com/amirhswork1582-hub/xengin.git ~/.gemini/config/plugins/xengin
-
-# Validate plugin integrity
-agy plugin validate ~/.gemini/config/plugins/xengin
-
-# Verify active status
-agy plugin list
-```
+| Environment | Status | Notes |
+| :--- | :--- | :--- |
+| **Antigravity** | ✅ Native / validated | First-class native plugin (`plugin.json`, `rules/`, `skills/`) |
+| **Gemini CLI** | 🧪 Experimental compatibility layer | Supported via `compat/gemini-cli/` manifest |
+| **Codex** | 🗺️ Planned adapter | Core rules portable; adapter planned for future releases |
+| **Claude Code** | 🗺️ Planned adapter | Core rules portable; adapter planned for future releases |
 
 ---
 
-## Repository Structure
+## Feedback & Contributions
 
-```text
-xengin/
-├── plugin.json                 # Antigravity Plugin manifest
-├── rules/
-│   ├── AGENTS.md               # Permanent core principles & 10-step lifecycle
-│   ├── frontend.md             # Conditional frontend rules
-│   ├── backend.md              # Conditional backend rules
-│   └── includes/               # Modular chapters (core, workflow, gate, risk, graphify)
-├── skills/
-│   ├── xengin-task/            # /xengin-task implementation workflow
-│   ├── xengin-plan/            # /xengin-plan read-only architectural planning
-│   └── xengin-review/          # /xengin-review read-only audit workflow
-├── docs/                       # Architecture, migration guides, and empirical benchmarks
-├── examples/                   # Reference implementations & plans
-└── compat/
-    └── gemini-cli/             # Experimental Gemini CLI compatibility layer
-```
+Xengin is currently in public beta.
+
+If you use it on a real project:
+
+- ⭐ **Star the repository** if it helps your daily coding workflow
+- 🐛 **Open an issue** when agent behavior violates engineering guardrails
+- 💡 **Suggest workflows or rule improvements** based on real development patterns
+- 🔧 **Submit a PR** for reproducible improvements
+
+Real-world failure cases are especially valuable because Xengin evolves from observed agent behavior, not from adding rules speculatively.
 
 ---
 
-## Contributing
+## Roadmap
 
-Contributions, issues, and feature requests are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md) before submitting pull requests.
+- Gather real-world Antigravity user feedback during Public Beta
+- Improve rules and edge cases from reproducible failure cases
+- Expand benchmark coverage across more frameworks and languages
+- Explore Codex environment adapter
+- Explore Claude Code environment adapter
 
 ---
 
